@@ -192,9 +192,17 @@
         toggleGroup(sizeGroup, 'size', `${bracketSize}`);
       }
       function toggleGroup(group, key, val) {
-        Array.from(group.children).forEach(btn => btn.classList.toggle('selected', btn.dataset[key] === val));
+        Array.from(group.children).forEach(btn => {
+          if (btn.dataset[key] === val) {
+            btn.classList.remove('btn-primary');
+            btn.classList.add('btn-success');
+          } else {
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-primary');
+          }
+        });
       }
-      const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+const shuffle = arr => arr.sort(() => Math.random() - 0.5);
 
       // 이벤트 바인딩
       listGroup.addEventListener('click', e => { if(e.target.dataset.list){ currentList=e.target.dataset.list; if(currentList==='new') wsData.new = wsData.new||{}; loadItems(); }});
