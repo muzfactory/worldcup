@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#007bff">
   <title>월드컵</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f8f9fa; color: #333; padding: 20px; }
@@ -281,5 +283,14 @@ document.querySelectorAll('button').forEach(btn => btn.addEventListener('click',
       renderHistory(); loadItems();
     });
   </script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.error('SW registration failed:', err));
+  });
+}
+</script>
 </body>
 </html>
